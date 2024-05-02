@@ -12,22 +12,17 @@ function CommonSearchBar() {
     setText(event.target.value);
   }
   const onSearch = () => {
-    if(text === ""){
-      setSearch('Korea');
-    }else {
-      setSearch(text)
-    }
-    setPage(1)
+    fn_search();
   }
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if(event.key === "Enter"){
-      if(text === ""){
-        setSearch('Korea');
-      }else {
-        setSearch(text)
-      }
-      setPage(1)
+      fn_search();
     }
+  }
+  const fn_search = () => {
+    if(text === "") setSearch('Korea');
+    else setSearch(text);
+    setPage(1);
   }
 
   return (

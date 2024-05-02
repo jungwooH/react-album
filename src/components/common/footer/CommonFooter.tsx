@@ -17,7 +17,7 @@ function CommonFooter() {
 
   //페이지 리스트 UI 생성
   const newArr: number[] = new Array();
-  for(let i=1; i<imgSelector.contents.total_pages; i++){
+  for(let i=1; i<=imgSelector.contents.total_pages; i++){
     newArr.push(i);
   }
 
@@ -25,12 +25,11 @@ function CommonFooter() {
   const divide = Math.ceil(length/10);
  
   const res = [];
-
   for (let i = 0; i<divide; i++){
     res.push(newArr.splice(0, 10))
   }
 
-  const setRes = () => {
+  const resResult = () => {
     return res[step] && res[step].map((item:number, index:number) => {
       return (
         <button className={index === page - 1 - step * 10 ? `${styles.pagination__button} ${styles.active}` : `${styles.pagination__button} ${styles.inactive}`} key={item} onClick={()=>{moveToPage(item)}}>
@@ -46,12 +45,12 @@ function CommonFooter() {
   const moveToPrev = () => {
     if(step === 0) return;
     else {
-      setStep(step -1)
+      setStep(step - 1)
       setPage(res[step-1][0])
     }
   }
   const moveToNext = () => {
-    if(step < res[step].length - 2){
+    if(step < res.length - 2){
       setStep(step + 1);
       setPage(res[step + 1][0]);
     }else return;
@@ -63,9 +62,7 @@ function CommonFooter() {
             <button className={styles.pagination__button} onClick={moveToPrev}>
                 <img src="src/assets/icons/arrow-left.svg" alt="" />
             </button>
-            {/* 변경될 UI 부분 */}
-            {/* <span>1</span> */}
-            { setRes() }
+            { resResult() }
             <button className={styles.pagination__button} onClick={moveToNext}>
                 <img src="src/assets/icons/arrow-right.svg" alt="" />
             </button>
