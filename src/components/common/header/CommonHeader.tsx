@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import styles from './CommonHeader.module.scss'
 
 function CommonHeader() {
+  
+  const navigate = useNavigate()
+  const moveToPage = () => {
+    navigate('/bookmark')
+  }
+
   return (
     <header className={styles.header}>
         <div className={styles.header__logoBox}>
@@ -9,7 +16,7 @@ function CommonHeader() {
         </div>
         <div className={styles.header__profileBox}>
             <button className={styles.header__profileBox__button}>사진제출</button>
-            <button className={styles.header__profileBox__button}>북마크</button>
+            <button className={styles.header__profileBox__button} onClick={moveToPage}>북마크</button>
             <span className={styles.header__profileBox__userName}>jw | jw@gmail.com</span>
         </div>
     </header>
